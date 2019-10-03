@@ -22,7 +22,7 @@ Nós usamos [SemVer](http://semver.org/) para versionamento. Para visualizar as 
 * **Rubens Arruda** - *Trabalho inicial* - [@rubensarruda](https://github.com/rubensarruda)
 * **Túlio Aoki** - *Trabalho inicial* - [@tulioaoki](https://github.com/tulioaoki)
 
-Veja também a lista completa de [contribuidores](https://github.com/your/project/contributors) que contribuiram para o desenvolvimento deste projeto.
+Veja também a lista completa de [contribuidores](https://github.com/pablomaribondo/pavao-app/contributors) que contribuiram para o desenvolvimento deste projeto.
 
 ## Licença
 
