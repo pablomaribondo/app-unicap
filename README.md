@@ -1,7 +1,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-round)](https://github.com/prettier/prettier)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fpablomaribondo%2Fpavao-app.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fpablomaribondo%2Fpavao-app?ref=badge_shield)
 
-# Pavão 🦚
+# Pavão 🦚.
 
 Aplicativo desenvolvido com o escopo de auxiliar o acompanhamento disciplinar do corpo discente da Universidade Católica de Pernambuco. 
 
