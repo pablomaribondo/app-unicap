@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import { List, ListItem, Body, Right, Text } from 'native-base';
+import { List, ListItem, Body, Right, Text, View } from 'native-base';
 
 const list = [
   {
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
   body: {
     display: 'flex',
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'flex-start',
   },
   first: {
@@ -115,18 +115,29 @@ const CoursesTakens = () => {
           <ListItem>
             <Body style={styles.first}>
               <Text style={(styles.title, { fontWeight: 'bolder' })}>{l.name}</Text>
-              <Text note>{l.subject}</Text>
+              <Text note style={styles.title}>
+                {l.subject}
+              </Text>
             </Body>
             <Body style={styles.body}>
-              <Text style={styles.title}>Período</Text>
-              <Text note>{l.period}</Text>
-            </Body>
-            <Body style={styles.body}>
-              <Text style={styles.title}>Média</Text>
-              <Text note>{l.average}</Text>
+              <View>
+                <Text style={styles.title}>Período</Text>
+                <Text note style={styles.title}>
+                  {l.period}
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.title}>Média</Text>
+                <Text note style={styles.title}>
+                  {l.average}
+                </Text>
+              </View>
             </Body>
             <Right>
-              <Text note>Situação {l.situation}</Text>
+              <Text style={styles.title}>Situação</Text>
+              <Text note style={styles.title}>
+                {l.situation}
+              </Text>
             </Right>
           </ListItem>
         ))}
