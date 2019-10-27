@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Button, KeyboardAvoidingView } from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, Text, TouchableHighlight } from 'react-native';
 import { Input } from 'react-native-elements';
+import { PURPLE, GREEN } from '../../../utils/Colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,10 +12,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     alignContent: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: 'transparent',
   },
   box: {
-    width: '100%',
+    width: '85%',
     margin: 10,
     heigth: '80vh',
     display: 'flex',
@@ -22,10 +23,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     alignContent: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff',
+    borderRadius: 30,
+    padding: 5,
+    color: GREEN,
+    fontColor: GREEN,
   },
   button: {
-    width: '100%',
+    alignItems: 'center',
+    backgroundColor: PURPLE,
+    padding: 10,
+    width: '85%',
+    borderRadius: 20,
     margin: 10,
   },
 });
@@ -59,7 +68,9 @@ function LoginForm() {
           type="password"
         />
       </View>
-      <Button style={styles.button} title="Entrar" color="black" onClick={() => onClick} loading />
+      <TouchableHighlight style={styles.button} onClick={() => onClick}>
+        <Text style={{ color: 'white', fontWeight: 'bolder' }}> ENTRAR </Text>
+      </TouchableHighlight>
     </KeyboardAvoidingView>
   );
 }

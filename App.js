@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import CoursesTakens from './src/components/Lists/CoursesTaken';
+import LoginScreen from './src/pages/Login';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 export default function App() {
   return (
     <View style={styles.container}>
-      <CoursesTakens />
+      <LoginScreen />
     </View>
   );
 }
