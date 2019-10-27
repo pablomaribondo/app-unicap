@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    heigth: '80vh',
+    heigth: '80%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   box: {
     width: '100%',
     margin: 10,
-    heigth: '80vh',
+    heigth: '80%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',

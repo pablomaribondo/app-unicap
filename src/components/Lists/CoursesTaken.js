@@ -64,7 +64,7 @@ const list = [
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    heigth: '80vh',
+    height: '80%',
     display: 'flex',
     flexDirection: 'column',
     alignContent: 'center',
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   box: {
     width: '100%',
     margin: 10,
-    heigth: '80vh',
+    height: '80%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     width: '40%',
-    fontWeight: 'bolder',
+    fontWeight: 'bold',
   },
 });
 
@@ -114,7 +114,7 @@ const CoursesTakens = () => {
         {list.map(l => (
           <ListItem>
             <Body style={styles.first}>
-              <Text style={(styles.title, { fontWeight: 'bolder' })}>{l.name}</Text>
+              <Text style={styles.title}>{l.name}</Text>
               <Text note style={styles.title}>
                 {l.subject}
               </Text>

@@ -1,28 +1,23 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import LoginForm from '../components/Forms/Login';
-import { NAVY_BLUE, PURPLE } from '../utils/Colors';
+import { NAVY_BLUE } from '../utils/Colors';
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    heigth: '100%',
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    alignContent: 'center',
     backgroundColor: NAVY_BLUE,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
 function Login() {
   return (
-    <View style={styles.container}>
-      <View style={{ width: '20vh', height: '20vh', backgroundColor: PURPLE }} />
+    <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
       <LoginForm />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
