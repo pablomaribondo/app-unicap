@@ -1,7 +1,7 @@
 import React from 'react';
-import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet } from 'react-native';
 import LoginForm from '../components/Forms/Login';
-import { NAVY_BLUE } from '../utils/Colors';
+import { NAVY_BLUE } from '../utils/colors';
 
 const styles = StyleSheet.create({
   container: {

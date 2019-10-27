@@ -1,7 +1,9 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
-import { PURPLE } from '../../../utils/Colors';
+import { PURPLE } from '../../../utils/colors';
 
 const styles = StyleSheet.create({
   container: {

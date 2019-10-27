@@ -12,3 +12,6 @@ export const MARROM = '#896541';
 export const CINZA = '#d1d1d1';
 export const BEGE = '#e5ce98';
 export const BEGE_CLARO = '#e6deb2';
+export const WHITE = '#fff';
+export const BLACK = '#000';
+export const RED = '#ff0000';
