@@ -6,6 +6,7 @@ import { loadAsync } from 'expo-font';
 import { PRIMARY } from './src/utils/colors';
 import HomeHeader from './src/components/HomeHeader';
 import reducer from './src/reducer';
+import DaySelector from "./src/components/DaySelector";
 
 const styles = StyleSheet.create({
   container: {
@@ -36,6 +37,7 @@ export default function() {
       {fontLoaded && (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
           <HomeHeader />
+          <DaySelector/>
         </KeyboardAvoidingView>
       )}
     </Provider>
