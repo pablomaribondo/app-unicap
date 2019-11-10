@@ -1,33 +1,43 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { RED, WHITE, GREEN } from '../../utils/colors';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import Constants from 'expo-constants';
+import { WHITE, PRIMARY, PRIMARY_DARK } from '../../utils/colors';
+import { elevationShadowStyle } from '../../utils/shadows';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 2,
-    padding: 20,
-    color: WHITE,
-    backgroundColor: RED,
-    alignSelf: 'flex-start',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    textAlign: 'center',
+  tabsWrapper: {
+    flexDirection: 'row',
   },
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    fontSize: 20,
+  text: {
+    alignSelf: 'center',
     color: WHITE,
+    fontSize: 22,
+    fontFamily: 'varela-round',
+  },
+  headerContentWrapper: {
+    paddingBottom: 18,
   },
   header: {
-    position: 'relative',
-    backgroundColor: GREEN,
-    height: 80,
-    left: 0,
-    right: 0,
-    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: PRIMARY,
+    ...elevationShadowStyle(30),
+  },
+  tab: {
+    paddingVertical: 14,
+    paddingHorizontal: 14,
+  },
+  activeTab: {
+    borderStyle: 'solid',
+    borderBottomWidth: 3,
+    borderBottomColor: WHITE,
+  },
+  tabText: {
+    textTransform: 'uppercase',
+    fontSize: 14,
+    color: PRIMARY_DARK,
+    fontFamily: 'varela-round',
+  },
+  activeTabText: {
     color: WHITE,
   },
 });
@@ -35,10 +45,21 @@ const styles = StyleSheet.create({
 export default function HomeHeader() {
   return (
     <View style={styles.header}>
-      <Text style={[styles.center, { paddingTop: 5, alignSelf: 'center' }]}>
-        JOSÉ ARTHUR SILVEIRA
-      </Text>
-      <Text style={[styles.center, { paddingTop: 5, alignSelf: 'center' }]}>201713009-1</Text>
+      <View style={styles.headerContentWrapper}>
+        <Text style={[styles.text]}>José Arthur Silveira</Text>
+        <Text style={[styles.text, { fontSize: 12 }]}>201710712-9</Text>
+      </View>
+      <ScrollView horizontal style={styles.tabsWrapper}>
+        <View style={[styles.tab, styles.activeTab]}>
+          <Text style={[styles.tabText, styles.activeTabText]}>Período atual</Text>
+        </View>
+        <View style={styles.tab}>
+          <Text style={styles.tabText}>Disciplinas</Text>
+        </View>
+        <View style={styles.tab}>
+          <Text style={styles.tabText}>Meus dados</Text>
+        </View>
+      </ScrollView>
     </View>
   );
 }
