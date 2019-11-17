@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     color: ACTION,
     paddingHorizontal: 18,
     fontSize: 18,
-  }
+  },
 });
 
 function DaySelector() {
