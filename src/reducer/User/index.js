@@ -8,7 +8,18 @@ import {
   GET_SCHEDULE_SUBJECTS,
 } from '../actions/users';
 
-function data(state = { user: {} }, action) {
+function userData(
+  state = {
+    user: {},
+    covered: [],
+    coursing: [],
+    grad: [],
+    grades: [],
+    pending: [],
+    schedule: [],
+  },
+  action
+) {
   switch (action.type) {
     case AUTHENTICATE_USER:
       return {
@@ -49,4 +60,4 @@ function data(state = { user: {} }, action) {
   }
 }
 
-export default data;
+export default userData;

@@ -1,57 +1,11 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import { List, ListItem, Body, Right, Text, View } from 'native-base';
+import PropTypes from 'prop-types';
 
+// eslint-disable-next-line no-unused-vars
 const list = [
-  {
-    name: 'Estrutura de Dados I',
-    subject: 'INF1216',
-    period: '20191',
-    average: '10.0',
-    situation: 'AM',
-  },
-  {
-    name: 'Estrutura de Dados II',
-    subject: 'INF1216',
-    period: '20191',
-    average: '10.0',
-    situation: 'AM',
-  },
-  {
-    name: 'Métodos Numéricos',
-    subject: 'INF1216',
-    period: '20191',
-    average: '10.0',
-    situation: 'AM',
-  },
-  {
-    name: 'Top. Avançados em Eng. de Soft.',
-    subject: 'INF1216',
-    period: '20191',
-    average: '10.0',
-    situation: 'AM',
-  },
-  {
-    name: 'Grafos',
-    subject: 'INF1216',
-    period: '20191',
-    average: '10.0',
-    situation: 'AM',
-  },
-  {
-    name: 'Introdução a Programação I',
-    subject: 'INF1216',
-    period: '20191',
-    average: '10.0',
-    situation: 'AM',
-  },
-  {
-    name: 'Algebra Linear',
-    subject: 'INF1216',
-    period: '20191',
-    average: '10.0',
-    situation: 'AM',
-  },
   {
     name: 'Como Aturar Bolsominion I',
     subject: 'INF1216',
@@ -106,12 +60,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const CoursesTakens = () => {
+const CoursesTakens = props => {
   // Calendário de provas
+  const { userData } = props;
+  const { covered } = userData;
   return (
     <ScrollView style={styles.container}>
       <List>
-        {list.map(l => (
+        {covered.map(l => (
           <ListItem>
             <Body style={styles.first}>
               <Text style={styles.title}>{l.name}</Text>
@@ -144,6 +100,14 @@ const CoursesTakens = () => {
       </List>
     </ScrollView>
   );
+};
+
+CoursesTakens.propTypes = {
+  userData: PropTypes.object,
+};
+
+CoursesTakens.defaultProps = {
+  userData: { covered: [] },
 };
 
 export default CoursesTakens;
