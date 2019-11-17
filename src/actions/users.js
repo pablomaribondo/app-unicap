@@ -1,3 +1,12 @@
+import authenticateUserRequest, {
+  getScheduleRequest,
+  getPendingRequest,
+  getGradesRequest,
+  getCoveredRequest,
+  getCoursingRequest,
+  getGradRequest,
+} from '../requests';
+
 // import authenticateUserRequest from '../../utils/requests';
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 export const GET_GRAD = 'GET_GRAD';
@@ -15,7 +24,7 @@ function getSchedule(payload) {
 }
 
 export function handleGetSchedule(payload) {
-  return dispatch => dispatch(getSchedule(payload));
+  return dispatch => getScheduleRequest(payload).then(data => dispatch(getSchedule(data)));
 }
 
 function getPending(payload) {
@@ -26,7 +35,7 @@ function getPending(payload) {
 }
 
 export function handleGetPending(payload) {
-  return dispatch => dispatch(getPending(payload));
+  return dispatch => getPendingRequest(payload).then(data => dispatch(getPending(data)));
 }
 
 function getGrades(payload) {
@@ -37,7 +46,7 @@ function getGrades(payload) {
 }
 
 export function handleGetGrades(payload) {
-  return dispatch => dispatch(getGrades(payload));
+  return dispatch => getGradesRequest(payload).then(data => dispatch(getGrades(data)));
 }
 
 function getCovered(payload) {
@@ -48,7 +57,7 @@ function getCovered(payload) {
 }
 
 export function handleGetCovered(payload) {
-  return dispatch => dispatch(getCovered(payload));
+  return dispatch => getCoveredRequest(payload).then(data => dispatch(getCovered(data)));
 }
 
 function getCoursing(payload) {
@@ -59,7 +68,7 @@ function getCoursing(payload) {
 }
 
 export function handleGetCoursing(payload) {
-  return dispatch => dispatch(getCoursing(payload));
+  return dispatch => getCoursingRequest(payload).then(data => dispatch(getCoursing(data)));
 }
 
 function getGrade(payload) {
@@ -70,7 +79,7 @@ function getGrade(payload) {
 }
 
 export function handleGetGrad(payload) {
-  return dispatch => dispatch(getGrade(payload));
+  return dispatch => getGradRequest(payload).then(data => dispatch(getGrade(data)));
 }
 
 function authenticateUser(payload) {
@@ -81,5 +90,6 @@ function authenticateUser(payload) {
 }
 
 export function handleAuthenticateUser(payload) {
-  return dispatch => dispatch(authenticateUser(payload));
+  return dispatch =>
+    authenticateUserRequest(payload).then(data => dispatch(authenticateUser(data)));
 }
