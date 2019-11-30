@@ -1,9 +1,11 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { View, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 import { PURPLE } from '../../../utils/colors';
+import { handleAuthenticateUser } from '../../../actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,12 +27,13 @@ const styles = StyleSheet.create({
   },
 });
 
-function LoginForm() {
+const LoginForm = props => {
   // Estados padrão de autenticação (Login e Senha)
+  const dispatch = useDispatch();
   const [matricula, setMatricula] = useState(undefined);
   const [pass, setPass] = useState('');
   const onClick = () => {
-    alert('Entrar');
+    dispatch(handleAuthenticateUser({ matricula, pass }));
   };
   return (
     <View style={styles.container}>
@@ -39,7 +42,7 @@ function LoginForm() {
         value={matricula}
         type="custom"
         options={{
-          mask: '999999999-9',
+          mask: '9999999999',
         }}
         keyboardType="numeric"
         onChangeText={e => setMatricula(e)}
@@ -48,7 +51,7 @@ function LoginForm() {
       <TextInput
         placeholder="Senha"
         value={pass}
-        onChange={e => setPass(e.value)}
+        onChangeText={e => setPass(e)}
         multiline={false}
         style={styles.field}
         keyboardType="numeric"
@@ -59,6 +62,6 @@ function LoginForm() {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 export default LoginForm;

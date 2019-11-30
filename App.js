@@ -4,10 +4,11 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { loadAsync } from 'expo-font';
 import { PRIMARY } from './src/utils/colors';
-import HomeHeader from './src/components/HomeHeader';
+import Login from './src/pages/Login';
 import reducer from './src/reducer';
-import DaySelector from './src/components/DaySelector';
+import middleware from './src/middleware';
 
+const store = createStore(reducer, middleware);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -33,11 +34,10 @@ export default function() {
   });
 
   return (
-    <Provider store={createStore(reducer)}>
+    <Provider store={store}>
       {fontLoaded && (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-          <HomeHeader />
-          <DaySelector />
+          <Login />
         </KeyboardAvoidingView>
       )}
     </Provider>

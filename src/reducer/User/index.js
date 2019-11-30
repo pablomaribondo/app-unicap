@@ -6,7 +6,9 @@ import {
   GET_PENDING_SUBJECTS,
   GET_GRADES_SUBJECTS,
   GET_SCHEDULE_SUBJECTS,
-} from '../actions/users';
+} from '../../actions';
+
+/* eslint-disable one-var */
 
 function userData(
   state = {
@@ -20,10 +22,21 @@ function userData(
   },
   action
 ) {
+  let registration, digit, token, data;
+  let name, course;
   switch (action.type) {
     case AUTHENTICATE_USER:
+      ({ registration, digit, token, data } = action.payload);
+      ({ name, course } = data.values.userInfo);
       return {
         ...state,
+        user: {
+          registration,
+          digit,
+          token,
+          name,
+          course,
+        },
       };
     case GET_COURSING_SUBJECTS:
       return {
