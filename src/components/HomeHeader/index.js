@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Constants from 'expo-constants';
+import { useSelector } from 'react-redux';
 import { WHITE, PRIMARY, PRIMARY_DARK } from '../../utils/colors';
 import { elevationShadowStyle } from '../../utils/shadows';
 
@@ -43,11 +44,20 @@ const styles = StyleSheet.create({
 });
 
 export default function HomeHeader() {
+  const user = useSelector(state => state.REDUCER_USER.user);
+  let registration = '';
+  let name = '';
+  let digit = '';
+  if (typeof user !== 'undefined') {
+    ({ registration, digit, name } = user);
+  }
   return (
     <View style={styles.header}>
       <View style={styles.headerContentWrapper}>
-        <Text style={[styles.text]}>José Arthur Silveira</Text>
-        <Text style={[styles.text, { fontSize: 12 }]}>201710712-9</Text>
+        <Text style={[styles.text]}>{name}</Text>
+        <Text style={[styles.text, { fontSize: 12 }]}>
+          {registration}-{digit}
+        </Text>
       </View>
       <ScrollView horizontal style={styles.tabsWrapper}>
         <View style={[styles.tab, styles.activeTab]}>

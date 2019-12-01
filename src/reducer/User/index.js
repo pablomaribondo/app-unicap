@@ -22,7 +22,7 @@ function userData(
   },
   action
 ) {
-  let registration, digit, token, data;
+  let registration, digit, token, data, covered;
   let name, course;
   switch (action.type) {
     case AUTHENTICATE_USER:
@@ -44,9 +44,10 @@ function userData(
         coursing: action.payload,
       };
     case GET_COVERED_SUBJECTS:
+      covered = action.payload.data.values.coveredSubjects;
       return {
         ...state,
-        covered: action.payload,
+        covered,
       };
     case GET_GRAD:
       return {

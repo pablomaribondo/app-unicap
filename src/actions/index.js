@@ -57,7 +57,11 @@ function getCovered(payload) {
 }
 
 export function handleGetCovered(payload) {
-  return dispatch => getCoveredRequest(payload).then(data => dispatch(getCovered(data)));
+  return dispatch =>
+    getCoveredRequest(payload).then(data => {
+      dispatch(getCovered(data));
+      return data;
+    });
 }
 
 function getCoursing(payload) {

@@ -1,19 +1,9 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { List, ListItem, Body, Right, Text, View } from 'native-base';
-import PropTypes from 'prop-types';
-
-// eslint-disable-next-line no-unused-vars
-const list = [
-  {
-    name: 'Como Aturar Bolsominion I',
-    subject: 'INF1216',
-    period: '20191',
-    average: '10.0',
-    situation: 'AM',
-  },
-];
+import { handleGetCovered } from '../../actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -60,10 +50,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const CoursesTakens = props => {
+const Courses = () => {
   // Calendário de provas
-  const { userData } = props;
-  const { covered } = userData;
+  const user = useSelector(state => state.REDUCER_USER.user);
+  const covered = useSelector(state => state.REDUCER_USER.covered);
+  const dispatch = useDispatch();
+  dispatch(handleGetCovered(user));
   return (
     <ScrollView style={styles.container}>
       <List>
@@ -72,7 +64,7 @@ const CoursesTakens = props => {
             <Body style={styles.first}>
               <Text style={styles.title}>{l.name}</Text>
               <Text note style={styles.title}>
-                {l.subject}
+                {l.code}
               </Text>
             </Body>
             <Body style={styles.body}>
@@ -85,7 +77,7 @@ const CoursesTakens = props => {
               <View>
                 <Text style={styles.title}>Média</Text>
                 <Text note style={styles.title}>
-                  {l.average}
+                  {l.averageGrade}
                 </Text>
               </View>
             </Body>
@@ -102,12 +94,4 @@ const CoursesTakens = props => {
   );
 };
 
-CoursesTakens.propTypes = {
-  userData: PropTypes.object,
-};
-
-CoursesTakens.defaultProps = {
-  userData: { covered: [] },
-};
-
-export default CoursesTakens;
+export default Courses;

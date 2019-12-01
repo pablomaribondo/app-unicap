@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
-const BASE_URL = 'http://localhost:3000/api/v1/';
+const BASE_URL = 'http://localhost:3000/api/v1/grad-student/';
 
 export default function authenticateUserRequest(payload) {
   const { matricula, pass } = payload;
@@ -13,13 +13,13 @@ export default function authenticateUserRequest(payload) {
       'content-type': 'application/json',
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
-      registration: '201713009',
-      digit: '2',
-      token: '795130',
+      registration,
+      digit,
+      token,
     }),
   };
   return Promise.all([
-    fetch(`${BASE_URL}grad-student/`, hdrs)
+    fetch(`${BASE_URL}`, hdrs)
       .then(res => console.log(res) || res.json())
       .catch(() => []),
   ])
@@ -32,22 +32,21 @@ export default function authenticateUserRequest(payload) {
     });
 }
 
-export function getGradRequest({ login, senha }) {
-  const body = {
-    login,
-    senha,
-  };
+export function getGradRequest(payload) {
+  const { registration, token, digit } = payload;
   const hdrs = {
     method: 'GET',
-    body: JSON.stringify(body),
     headers: new Headers({
       'content-type': 'application/json',
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
+      registration,
+      digit,
+      token,
     }),
   };
   return Promise.all([
-    fetch(`${BASE_URL}api/v1/grad-student/`, hdrs)
+    fetch(`${BASE_URL}`, hdrs)
       .then(res => res.json())
       .catch(() => []),
   ])
@@ -60,22 +59,21 @@ export function getGradRequest({ login, senha }) {
     });
 }
 
-export function getCoursingRequest({ login, senha }) {
-  const body = {
-    login,
-    senha,
-  };
+export function getCoursingRequest(payload) {
+  const { registration, token, digit } = payload;
   const hdrs = {
     method: 'GET',
-    body: JSON.stringify(body),
     headers: new Headers({
       'content-type': 'application/json',
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
+      registration,
+      digit,
+      token,
     }),
   };
   return Promise.all([
-    fetch(`${BASE_URL}api/v1/grad-student/coursing`, hdrs)
+    fetch(`${BASE_URL}subjects/coursing`, hdrs)
       .then(res => res.json())
       .catch(() => []),
   ])
@@ -88,22 +86,21 @@ export function getCoursingRequest({ login, senha }) {
     });
 }
 
-export function getCoveredRequest({ login, senha }) {
-  const body = {
-    login,
-    senha,
-  };
+export function getCoveredRequest(payload) {
+  const { registration, token, digit } = payload;
   const hdrs = {
     method: 'GET',
-    body: JSON.stringify(body),
     headers: new Headers({
       'content-type': 'application/json',
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
+      registration,
+      digit,
+      token,
     }),
   };
   return Promise.all([
-    fetch(`${BASE_URL}api/v1/grad-student/covered`, hdrs)
+    fetch(`${BASE_URL}subjects/covered`, hdrs)
       .then(res => res.json())
       .catch(() => []),
   ])
@@ -116,22 +113,21 @@ export function getCoveredRequest({ login, senha }) {
     });
 }
 
-export function getGradesRequest({ login, senha }) {
-  const body = {
-    login,
-    senha,
-  };
+export function getGradesRequest(payload) {
+  const { registration, token, digit } = payload;
   const hdrs = {
     method: 'GET',
-    body: JSON.stringify(body),
     headers: new Headers({
       'content-type': 'application/json',
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
+      registration,
+      digit,
+      token,
     }),
   };
   return Promise.all([
-    fetch(`${BASE_URL}api/v1/grad-student/grades`, hdrs)
+    fetch(`${BASE_URL}subjects/grades`, hdrs)
       .then(res => res.json())
       .catch(() => []),
   ])
@@ -144,22 +140,21 @@ export function getGradesRequest({ login, senha }) {
     });
 }
 
-export function getPendingRequest({ login, senha }) {
-  const body = {
-    login,
-    senha,
-  };
+export function getPendingRequest(payload) {
+  const { registration, token, digit } = payload;
   const hdrs = {
     method: 'GET',
-    body: JSON.stringify(body),
     headers: new Headers({
       'content-type': 'application/json',
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
+      registration,
+      digit,
+      token,
     }),
   };
   return Promise.all([
-    fetch(`${BASE_URL}api/v1/grad-student/pending`, hdrs)
+    fetch(`${BASE_URL}subjects/pending`, hdrs)
       .then(res => res.json())
       .catch(() => []),
   ])
@@ -172,22 +167,21 @@ export function getPendingRequest({ login, senha }) {
     });
 }
 
-export function getScheduleRequest({ login, senha }) {
-  const body = {
-    login,
-    senha,
-  };
+export function getScheduleRequest(payload) {
+  const { registration, token, digit } = payload;
   const hdrs = {
     method: 'GET',
-    body: JSON.stringify(body),
     headers: new Headers({
       'content-type': 'application/json',
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
+      registration,
+      digit,
+      token,
     }),
   };
   return Promise.all([
-    fetch(`${BASE_URL}api/v1/grad-student/schedule`, hdrs)
+    fetch(`${BASE_URL}subjects/schedule`, hdrs)
       .then(res => res.json())
       .catch(() => []),
   ])

@@ -2,6 +2,8 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigation } from 'react-navigation-hooks';
+
 import { View, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 import { PURPLE } from '../../../utils/colors';
@@ -27,13 +29,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginForm = props => {
+const LoginForm = () => {
   // Estados padrão de autenticação (Login e Senha)
   const dispatch = useDispatch();
   const [matricula, setMatricula] = useState(undefined);
   const [pass, setPass] = useState('');
+  const { navigate } = useNavigation();
+
   const onClick = () => {
-    dispatch(handleAuthenticateUser({ matricula, pass }));
+    dispatch(handleAuthenticateUser({ matricula, pass })).then(navigate('main'));
   };
   return (
     <View style={styles.container}>

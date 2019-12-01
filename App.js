@@ -1,5 +1,6 @@
 import React from 'react';
 import { KeyboardAvoidingView, StyleSheet } from 'react-native';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { loadAsync } from 'expo-font';
@@ -7,6 +8,7 @@ import { PRIMARY } from './src/utils/colors';
 import Login from './src/pages/Login';
 import reducer from './src/reducer';
 import middleware from './src/middleware';
+import CoursesTaken from './src/pages/CoursesTaken';
 
 const store = createStore(reducer, middleware);
 const styles = StyleSheet.create({
@@ -17,6 +19,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+const MySwitchNavigator = createSwitchNavigator({
+  login: Login,
+  main: CoursesTaken,
+});
+
+const Container = createAppContainer(MySwitchNavigator);
 
 export default function() {
   const { useEffect, useState } = React;
@@ -37,7 +46,7 @@ export default function() {
     <Provider store={store}>
       {fontLoaded && (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-          <Login />
+          <Container />
         </KeyboardAvoidingView>
       )}
     </Provider>
