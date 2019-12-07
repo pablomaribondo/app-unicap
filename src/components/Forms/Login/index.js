@@ -38,7 +38,7 @@ const LoginForm = () => {
 
   const onClick = () => {
     dispatch(handleAuthenticateUser({ matricula, pass })).then(() => {
-      navigate('taken');
+      navigate('coursing');
     });
   };
   return (

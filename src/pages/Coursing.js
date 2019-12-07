@@ -1,6 +1,7 @@
 import React from 'react';
 import { KeyboardAvoidingView, StyleSheet } from 'react-native';
 import { View } from 'native-base';
+import { loadAsync } from 'expo-font';
 import { PRIMARY } from '../utils/colors';
 import HomeHeader from '../components/HomeHeader';
 import DaySelector from '../components/DaySelector';
@@ -19,6 +20,9 @@ export default function() {
   const [fontLoaded, setFontLoaded] = useState(false);
 
   const loadFont = async () => {
+    await loadAsync({
+      'varela-round': require('../../assets/VarelaRound-Regular.ttf'),
+    });
     setFontLoaded(true);
   };
 

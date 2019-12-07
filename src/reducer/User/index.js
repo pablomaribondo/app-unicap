@@ -22,7 +22,7 @@ function userData(
   },
   action
 ) {
-  let registration, digit, token, data, covered;
+  let registration, digit, token, data, covered, coursing;
   let name, course;
   switch (action.type) {
     case AUTHENTICATE_USER:
@@ -39,9 +39,13 @@ function userData(
         },
       };
     case GET_COURSING_SUBJECTS:
+      coursing = action.payload.data.values.coursingSubjects;
+      if (typeof coursing === 'undefined' || coursing === undefined) {
+        coursing = [];
+      }
       return {
         ...state,
-        coursing: action.payload,
+        coursing,
       };
     case GET_COVERED_SUBJECTS:
       covered = action.payload.data.values.coveredSubjects;
