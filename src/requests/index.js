@@ -7,19 +7,22 @@ export default function authenticateUserRequest(payload) {
   const registration = matricula.slice(0, -1);
   const digit = matricula.slice(-1);
   const token = pass;
+  const body = {
+    registration,
+    digit,
+    token,
+  };
   const hdrs = {
-    method: 'GET',
+    method: 'POST',
+    body: JSON.stringify(body),
     headers: new Headers({
       'content-type': 'application/json',
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
-      registration,
-      digit,
-      token,
     }),
   };
   return Promise.all([
-    fetch(`${BASE_URL}`, hdrs)
+    fetch(`${BASE_URL}login`, hdrs)
       .then(res => console.log(res) || res.json())
       .catch(() => []),
   ])
