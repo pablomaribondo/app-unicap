@@ -37,7 +37,7 @@ const LoginForm = () => {
   const { navigate } = useNavigation();
 
   const onClick = () => {
-    dispatch(handleAuthenticateUser({ matricula, pass })).then(navigate('main'));
+    dispatch(handleAuthenticateUser({ matricula, pass })).then(navigate('taken'));
   };
   return (
     <View style={styles.container}>

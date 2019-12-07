@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
-const BASE_URL = 'http://localhost:3000/api/v1/grad-student/';
+const BASE_URL = 'http://0.0.0.0:3000/api/v1/grad-student/';
 
 export default function authenticateUserRequest(payload) {
   const { matricula, pass } = payload;

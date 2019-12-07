@@ -6,7 +6,7 @@ import { PRIMARY } from '../utils/colors';
 import HomeHeader from '../components/HomeHeader';
 import reducer from '../reducer';
 import DaySelector from '../components/DaySelector';
-import CoursesTakens from '../components/Lists/CoursesTaken';
+import CoursingSubjects from '../components/Lists/CoursingSubjects';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +34,7 @@ export default function() {
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
           <HomeHeader />
           <DaySelector />
-          <CoursesTakens />
+          <CoursingSubjects />
         </KeyboardAvoidingView>
       )}
     </View>

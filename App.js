@@ -9,6 +9,7 @@ import Login from './src/pages/Login';
 import reducer from './src/reducer';
 import middleware from './src/middleware';
 import CoursesTaken from './src/pages/CoursesTaken';
+import Coursing from './src/pages/Coursing';
 
 const store = createStore(reducer, middleware);
 const styles = StyleSheet.create({
@@ -16,13 +17,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: PRIMARY,
     justifyContent: 'center',
-    textAlign: 'center',
   },
 });
 
 const MySwitchNavigator = createSwitchNavigator({
   login: Login,
-  main: CoursesTaken,
+  taken: CoursesTaken,
+  coursing: Coursing,
 });
 
 const Container = createAppContainer(MySwitchNavigator);

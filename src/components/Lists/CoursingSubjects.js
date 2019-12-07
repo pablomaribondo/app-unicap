@@ -1,5 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { List, ListItem, Body, Right, Text, View } from 'native-base';
@@ -56,33 +56,37 @@ const Courses = () => {
   const user = useSelector(state => state.REDUCER_USER.user);
   const covered = useSelector(state => state.REDUCER_USER.covered);
   const dispatch = useDispatch();
-  const [, updateState] = React.useState();
-  const forceUpdate = useCallback(() => updateState({}), []);
-  useEffect(() => {
-    dispatch(handleGetCovered(user)).then(forceUpdate());
-  }, []);
+  dispatch(handleGetCovered(user));
   return (
     <ScrollView style={styles.container}>
       <List>
         {covered.map(l => (
-          <ListItem key={l.code} style={styles.container}>
+          <ListItem>
             <Body style={styles.first}>
               <Text style={styles.title}>{l.name}</Text>
-              <Text style={styles.title}>{l.code}</Text>
+              <Text note style={styles.title}>
+                {l.code}
+              </Text>
             </Body>
             <Body style={styles.body}>
               <View>
                 <Text style={styles.title}>Período</Text>
-                <Text style={styles.title}>{l.period}</Text>
+                <Text note style={styles.title}>
+                  {l.period}
+                </Text>
               </View>
               <View>
                 <Text style={styles.title}>Média</Text>
-                <Text style={styles.title}>{l.averageGrade}</Text>
+                <Text note style={styles.title}>
+                  {l.averageGrade}
+                </Text>
               </View>
             </Body>
             <Right>
               <Text style={styles.title}>Situação</Text>
-              <Text style={styles.title}>{l.situation}</Text>
+              <Text note style={styles.title}>
+                {l.situation}
+              </Text>
             </Right>
           </ListItem>
         ))}

@@ -45,6 +45,9 @@ function userData(
       };
     case GET_COVERED_SUBJECTS:
       covered = action.payload.data.values.coveredSubjects;
+      if (typeof covered === 'undefined' || covered === undefined) {
+        covered = [];
+      }
       return {
         ...state,
         covered,

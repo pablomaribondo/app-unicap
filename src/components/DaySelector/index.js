@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-alert */
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { elevationShadowStyle } from '../../utils/shadows';
 import { WHITE, GRAY, ACTION } from '../../utils/colors';
@@ -42,13 +42,16 @@ const styles = StyleSheet.create({
 });
 
 function DaySelector() {
+  const days = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+  const [day] = useState(days[0]);
+
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
         <View style={styles.button}>
           <Image source={require('../../../assets/left-arrow.png')} resizeMode="center" />
         </View>
-        <Text style={styles.dayText}>Segunda</Text>
+        <Text style={styles.dayText}>{day}</Text>
         <View style={styles.button}>
           <Image source={require('../../../assets/right-arrow.png')} resizeMode="center" />
         </View>

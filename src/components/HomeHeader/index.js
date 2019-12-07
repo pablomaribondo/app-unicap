@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     borderBottomColor: WHITE,
   },
   tabText: {
-    textTransform: 'uppercase',
     fontSize: 14,
     color: PRIMARY_DARK,
     fontFamily: 'varela-round',
