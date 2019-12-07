@@ -1,9 +1,10 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet, ScrollView } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { List, ListItem, Body, Right, Text, View } from 'native-base';
-import { handleGetCovered } from '../../actions';
+import { handleGetCoursing } from '../../actions';
 import { PRIMARY } from '../../utils/colors';
 
 const styles = StyleSheet.create({
@@ -51,48 +52,54 @@ const styles = StyleSheet.create({
   },
 });
 
-const Courses = () => {
-  // Calendário de provas
-  const user = useSelector(state => state.REDUCER_USER.user);
-  const covered = useSelector(state => state.REDUCER_USER.covered);
-  const dispatch = useDispatch();
-  dispatch(handleGetCovered(user));
-  return (
-    <ScrollView style={styles.container}>
-      <List>
-        {covered.map(l => (
-          <ListItem>
-            <Body style={styles.first}>
-              <Text style={styles.title}>{l.name}</Text>
-              <Text note style={styles.title}>
-                {l.code}
-              </Text>
-            </Body>
-            <Body style={styles.body}>
-              <View>
-                <Text style={styles.title}>Período</Text>
-                <Text note style={styles.title}>
-                  {l.period}
-                </Text>
-              </View>
-              <View>
-                <Text style={styles.title}>Média</Text>
-                <Text note style={styles.title}>
-                  {l.averageGrade}
-                </Text>
-              </View>
-            </Body>
-            <Right>
-              <Text style={styles.title}>Situação</Text>
-              <Text note style={styles.title}>
-                {l.situation}
-              </Text>
-            </Right>
-          </ListItem>
-        ))}
-      </List>
-    </ScrollView>
-  );
+class Courses extends React.PureComponent {
+  componentDidMount() {
+    const { dispatch, REDUCER_USER } = this.props;
+    const { user } = REDUCER_USER;
+    dispatch(handleGetCoursing(user));
+  }
+
+  render() {
+    const { REDUCER_USER } = this.props;
+    const { coursing } = REDUCER_USER;
+    return (
+      <ScrollView style={styles.container}>
+        <List>
+          {coursing.map(l => (
+            <ListItem key={l.code} style={styles.container}>
+              <Body style={styles.first}>
+                <Text style={styles.title}>{l.name}</Text>
+                <Text style={styles.title}>{l.code}</Text>
+              </Body>
+              <Body style={styles.body}>
+                <View>
+                  <Text style={styles.title}>Período</Text>
+                  <Text style={styles.title}>{l.period}</Text>
+                </View>
+                <View>
+                  <Text style={styles.title}>Média</Text>
+                  <Text style={styles.title}>{l.averageGrade}</Text>
+                </View>
+              </Body>
+              <Right>
+                <Text style={styles.title}>Situação</Text>
+                <Text style={styles.title}>{l.situation}</Text>
+              </Right>
+            </ListItem>
+          ))}
+        </List>
+      </ScrollView>
+    );
+  }
+}
+
+const mapStateToProps = ({ REDUCER_USER }) => ({
+  REDUCER_USER,
+});
+
+Courses.propTypes = {
+  REDUCER_USER: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default Courses;
+export default connect(mapStateToProps)(Courses);

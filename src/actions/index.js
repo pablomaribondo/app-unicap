@@ -58,10 +58,12 @@ function getCovered(payload) {
 
 export function handleGetCovered(payload) {
   return dispatch =>
-    getCoveredRequest(payload).then(data => {
-      dispatch(getCovered(data));
-      return data;
-    });
+    getCoveredRequest(payload)
+      .then(data => {
+        dispatch(getCovered(data));
+        return data;
+      })
+      .then(data => data);
 }
 
 function getCoursing(payload) {
@@ -70,9 +72,14 @@ function getCoursing(payload) {
     payload,
   };
 }
-
 export function handleGetCoursing(payload) {
-  return dispatch => getCoursingRequest(payload).then(data => dispatch(getCoursing(data)));
+  return dispatch =>
+    getCoursingRequest(payload)
+      .then(data => {
+        dispatch(getCoursing(data));
+        return data;
+      })
+      .then(data => data);
 }
 
 function getGrade(payload) {

@@ -1,10 +1,10 @@
 import React from 'react';
 import { KeyboardAvoidingView, StyleSheet } from 'react-native';
+import { createStore } from 'redux';
 import { View } from 'native-base';
 import { PRIMARY } from '../utils/colors';
 import HomeHeader from '../components/HomeHeader';
-import DaySelector from '../components/DaySelector';
-import CoursingSubjects from '../components/Lists/CoursingSubjects';
+import reducer from '../reducer';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,12 +27,10 @@ export default function() {
   });
 
   return (
-    <View>
+    <View store={createStore(reducer)}>
       {fontLoaded && (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
           <HomeHeader />
-          <DaySelector />
-          <CoursingSubjects />
         </KeyboardAvoidingView>
       )}
     </View>
