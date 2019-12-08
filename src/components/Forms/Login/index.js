@@ -3,7 +3,9 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
-import { PURPLE } from '../../../utils/colors';
+import { ACTION } from '../../../utils/colors';
+import { authenticateUserRequest } from '../../../Requests';
+import { elevationShadowStyle } from '../../../utils/shadows';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,21 +18,40 @@ const styles = StyleSheet.create({
     padding: 18,
     borderRadius: 50,
     minWidth: '80%',
+    ...elevationShadowStyle(20),
   },
   button: {
-    backgroundColor: PURPLE,
+    backgroundColor: ACTION,
     marginVertical: 12,
     padding: 18,
     borderRadius: 50,
+    ...elevationShadowStyle(20),
   },
 });
 
-function LoginForm() {
-  // Estados padrão de autenticação (Login e Senha)
-  const [matricula, setMatricula] = useState(undefined);
-  const [pass, setPass] = useState('');
+function LoginForm({ onLoginSuccess }) {
+  const [matricula, setMatricula] = useState('2017270502');
+  const [pass, setPass] = useState('110211');
   const onClick = () => {
-    alert('Entrar');
+    authenticateUserRequest({ matricula, pass })
+      .then(() => {
+        onLoginSuccess({
+          registration: matricula.slice(0, -2),
+          token: pass,
+          digit: matricula.slice(-1),
+        });
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 400) {
+          alert(error.response.data.values);
+        } else if (error.response && error.response.status !== 400) {
+          alert(
+            'Tivemos um problema interno ao tentar efetuar seu login, tente novamente mais tarde!'
+          );
+        } else if (!error.response) {
+          alert('Cheque sua conexāo com a internet e tente novamente!');
+        }
+      });
   };
   return (
     <View style={styles.container}>
@@ -39,7 +60,7 @@ function LoginForm() {
         value={matricula}
         type="custom"
         options={{
-          mask: '9999999999',
+          mask: '999999999-9',
         }}
         keyboardType="numeric"
         onChangeText={e => setMatricula(e)}

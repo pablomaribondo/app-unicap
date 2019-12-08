@@ -2,20 +2,15 @@
 /* eslint-disable no-undef */
 import axios from 'axios';
 
-const BASE_URL = 'http://38e129d7.ngrok.io/api/v1/grad-student/';
+const BASE_URL = 'http://ee3f5348.ngrok.io/api/v1/grad-student/';
 
-export default async function authenticateUserRequest(payload) {
-  try {
-    const { matricula, pass } = payload;
-    return await axios.post(`${BASE_URL}login`, {
-      registration: matricula.slice(0, -1),
-      digit: matricula.slice(-1),
-      token: pass,
-    });
-  } catch (error) {
-    console.error('Erro: ', error);
-    return null;
-  }
+export async function authenticateUserRequest(payload) {
+  const { matricula, pass } = payload;
+  return axios.post(`${BASE_URL}login`, {
+    registration: matricula.slice(0, -2),
+    digit: matricula.slice(-1),
+    token: pass,
+  });
 }
 
 export async function getGradRequest(payload) {

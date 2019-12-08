@@ -6,6 +6,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { SECONDARY } from './src/utils/colors';
 import LoginForm from './src/components/Forms/Login';
 import AppRoot from './src/pages/AppRoot';
+import { useNavigation } from 'react-navigation-hooks';
 
 const styles = StyleSheet.create({
   root: {
@@ -18,6 +19,7 @@ const styles = StyleSheet.create({
 const Login = () => {
   const { useEffect, useState } = React;
   const [fontLoaded, setFontLoaded] = useState(false);
+  const { navigate } = useNavigation();
 
   const loadFont = async () => {
     await loadAsync({
@@ -27,14 +29,8 @@ const Login = () => {
   };
 
   const proceedToApp = userDetails => {
-    alert('a');
+    navigate('AppRoot', userDetails);
   };
-
-  alert('aajjaa');
-
-
-
-
 
   useEffect(() => {
     loadFont();
