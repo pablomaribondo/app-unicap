@@ -8,11 +8,13 @@ import { elevationShadowStyle } from '../../utils/shadows';
 const styles = StyleSheet.create({
   tabsWrapper: {
     flexDirection: 'row',
+    height: 10,
+    backgroundColor: 'red'
   },
   text: {
     alignSelf: 'center',
     color: WHITE,
-    fontSize: 22,
+    fontSize: 14,
     fontFamily: 'varela-round',
   },
   headerContentWrapper: {
@@ -20,6 +22,7 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingTop: Constants.statusBarHeight,
+    height: 140,
     backgroundColor: PRIMARY,
     ...elevationShadowStyle(30),
   },
@@ -33,12 +36,16 @@ const styles = StyleSheet.create({
     borderBottomColor: WHITE,
   },
   tabText: {
+    textTransform: 'uppercase',
     fontSize: 14,
     color: PRIMARY_DARK,
     fontFamily: 'varela-round',
   },
   activeTabText: {
     color: WHITE,
+  },
+  center: {
+    textAlign: 'center',
   },
 });
 

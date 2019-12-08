@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: PRIMARY,
-    justifyContent: 'center',
   },
 });
 
@@ -33,11 +32,10 @@ export default function() {
   return (
     <View>
       {fontLoaded && (
-        <KeyboardAvoidingView behavior="padding" style={styles.container}>
+        <View behavior="padding" style={styles.container}>
           <HomeHeader />
-          <DaySelector />
           <CoursingSubjects />
-        </KeyboardAvoidingView>
+        </View>
       )}
     </View>
   );

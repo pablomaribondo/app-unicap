@@ -3,56 +3,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
-import { List, ListItem, Body, Right, Text, View } from 'native-base';
+import { Text, View } from 'native-base';
 import { handleGetCoursing } from '../../actions';
 import { PRIMARY } from '../../utils/colors';
+import Subject from '../Subject/Subject';
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '80%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignContent: 'center',
     backgroundColor: PRIMARY,
+    height: 20,
   },
-  box: {
-    width: '100%',
-    margin: 10,
-    height: '80%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    alignContent: 'center',
-    backgroundColor: PRIMARY,
-  },
-  button: {
-    width: '100%',
-    margin: 10,
-  },
-  title: {
-    margin: 5,
-    color: 'white',
-  },
-  body: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'flex-start',
-  },
-  first: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    width: '40%',
+  text: {
+    fontSize: 14,
+    height: 14,
   },
 });
 
-class Courses extends React.PureComponent {
+class Courses extends React.Component {
   componentDidMount() {
     const { dispatch, REDUCER_USER } = this.props;
     const { user } = REDUCER_USER;
@@ -63,31 +30,16 @@ class Courses extends React.PureComponent {
     const { REDUCER_USER } = this.props;
     const { coursing } = REDUCER_USER;
     return (
-      <ScrollView style={styles.container}>
-        <List>
-          {coursing.map(l => (
-            <ListItem key={l.code} style={styles.container}>
-              <Body style={styles.first}>
-                <Text style={styles.title}>{l.name}</Text>
-                <Text style={styles.title}>{l.code}</Text>
-              </Body>
-              <Body style={styles.body}>
-                <View>
-                  <Text style={styles.title}>Período</Text>
-                  <Text style={styles.title}>{l.period}</Text>
-                </View>
-                <View>
-                  <Text style={styles.title}>Média</Text>
-                  <Text style={styles.title}>{l.averageGrade}</Text>
-                </View>
-              </Body>
-              <Right>
-                <Text style={styles.title}>Situação</Text>
-                <Text style={styles.title}>{l.situation}</Text>
-              </Right>
-            </ListItem>
-          ))}
-        </List>
+      <ScrollView style={{ height: 200 , backgroundColor: 'yellow', padding: 20}}>
+        {coursing.map(eachSubject => {
+          return (
+            <Subject
+              codigo={eachSubject.code}
+              name={eachSubject.name}
+              stringLocalHorarios="teste"
+            />
+          );
+        })}
       </ScrollView>
     );
   }

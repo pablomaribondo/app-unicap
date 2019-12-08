@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
 const LoginForm = () => {
   // Estados padrão de autenticação (Login e Senha)
   const dispatch = useDispatch();
-  const [matricula, setMatricula] = useState(undefined);
-  const [pass, setPass] = useState('');
+  const [matricula, setMatricula] = useState("2017107129");
+  const [pass, setPass] = useState('172823');
   const { navigate } = useNavigation();
 
   const onClick = () => {
