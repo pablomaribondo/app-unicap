@@ -1,9 +1,8 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import { Text, View } from 'native-base';
 import { handleGetCoursing } from '../../actions';
 import { PRIMARY } from '../../utils/colors';
 import Subject from '../Subject/Subject';
@@ -30,17 +29,21 @@ class Courses extends React.Component {
     const { REDUCER_USER } = this.props;
     const { coursing } = REDUCER_USER;
     return (
-      <ScrollView style={{ height: 200 , backgroundColor: 'yellow', padding: 20}}>
-        {coursing.map(eachSubject => {
-          return (
-            <Subject
-              codigo={eachSubject.code}
-              name={eachSubject.name}
-              stringLocalHorarios="teste"
-            />
-          );
-        })}
-      </ScrollView>
+      <View>
+        <Text style={{height: 20}}>a</Text>
+
+        <ScrollView style={{ height: 200, padding: 20 }}>
+          {coursing.map(eachSubject => {
+            return (
+              <Subject
+                codigo={eachSubject.code}
+                name={eachSubject.name}
+                stringLocalHorarios="teste"
+              />
+            );
+          })}
+        </ScrollView>
+      </View>
     );
   }
 }

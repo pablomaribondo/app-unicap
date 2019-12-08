@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
   tabsWrapper: {
     flexDirection: 'row',
     height: 10,
-    backgroundColor: 'red'
   },
   text: {
     alignSelf: 'center',

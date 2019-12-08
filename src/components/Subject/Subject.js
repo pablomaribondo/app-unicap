@@ -1,14 +1,12 @@
-import { View, React, StyleSheet } from 'react-native';
-import Text from 'react-native-web/dist/exports/Text';
+import { View, StyleSheet, Text } from 'react-native';
+import React from 'react';
 import { PRIMARY } from '../../utils/colors';
 
 const styles = StyleSheet.create({
   subject: {
     backgroundColor: PRIMARY,
-    height: 200
   },
   text: {
-    height: 14,
     fontSize: 14,
   },
 });

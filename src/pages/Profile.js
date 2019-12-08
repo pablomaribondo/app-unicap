@@ -1,7 +1,6 @@
 import React from 'react';
-import { KeyboardAvoidingView, StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import { createStore } from 'redux';
-import { View } from 'native-base';
 import { PRIMARY } from '../utils/colors';
 import HomeHeader from '../components/HomeHeader';
 import reducer from '../reducer';

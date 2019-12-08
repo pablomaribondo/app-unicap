@@ -1,10 +1,8 @@
 import React from 'react';
-import { KeyboardAvoidingView, StyleSheet } from 'react-native';
-import { View } from 'native-base';
+import { StyleSheet, View } from 'react-native';
 import { loadAsync } from 'expo-font';
 import { PRIMARY } from '../utils/colors';
 import HomeHeader from '../components/HomeHeader';
-import DaySelector from '../components/DaySelector';
 import CoursingSubjects from '../components/Lists/CoursingSubjects';
 
 const styles = StyleSheet.create({
@@ -32,7 +30,7 @@ export default function() {
   return (
     <View>
       {fontLoaded && (
-        <View behavior="padding" style={styles.container}>
+        <View  style={styles.container}>
           <HomeHeader />
           <CoursingSubjects />
         </View>
