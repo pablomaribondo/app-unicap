@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 });
 
 function LoginForm({ onLoginSuccess }) {
-  const [matricula, setMatricula] = useState('2017270502');
+  const [matricula, setMatricula] = useState('201727050-2');
   const [pass, setPass] = useState('110211');
   const onClick = () => {
     authenticateUserRequest({ matricula, pass })
