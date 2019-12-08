@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import { WHITE, PRIMARY, PRIMARY_DARK } from '../../utils/colors';
 import { elevationShadowStyle } from '../../utils/shadows';
@@ -43,23 +43,63 @@ const styles = StyleSheet.create({
 });
 
 // eslint-disable-next-line react/prop-types
-export default function HomeHeader({ name, registration, onTabChange }) {
+export default function HomeHeader({ name, registration, onTabChange, selectedTab }) {
   return (
     <View style={styles.header}>
       <View style={styles.headerContentWrapper}>
         <Text style={[styles.text, { textTransform: 'capitalize', marginTop: 12 }]}>{name}</Text>
         <Text style={[styles.text, { fontSize: 12 }]}>{registration}</Text>
       </View>
-      <ScrollView horizontal style={styles.tabsWrapper}>
-        <View style={[styles.tab, styles.activeTab]}>
-          <Text style={[styles.tabText, styles.activeTabText]}>Período atual</Text>
-        </View>
-        <View style={styles.tab}>
-          <Text style={styles.tabText}>Disciplinas</Text>
-        </View>
-        <View style={styles.tab}>
-          <Text style={styles.tabText}>Meus dados</Text>
-        </View>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabsWrapper}>
+        <TouchableOpacity
+          onPress={() => onTabChange('current-period')}
+          style={[styles.tab, selectedTab === 'current-period' ? styles.activeTab : undefined]}
+        >
+          <Text
+            style={[
+              styles.tabText,
+              selectedTab === 'current-period' ? styles.activeTabText : undefined,
+            ]}
+          >
+            Período atual
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => onTabChange('subjects-took')}
+          style={[styles.tab, selectedTab === 'subjects-took' ? styles.activeTab : undefined]}
+        >
+          <Text
+            style={[
+              styles.tabText,
+              selectedTab === 'subjects-took' ? styles.activeTabText : undefined,
+            ]}
+          >
+            Cursadas
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.tab, selectedTab === 'subjects-to-take' ? styles.activeTab : undefined]}
+          onPress={() => onTabChange('subjects-to-take')}
+        >
+          <Text
+            style={[
+              styles.tabText,
+              selectedTab === 'subjects-to-take' ? styles.activeTabText : undefined,
+            ]}
+          >
+            Faltando
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => onTabChange('profile')}
+          style={[styles.tab, selectedTab === 'profile' ? styles.activeTab : undefined]}
+        >
+          <Text
+            style={[styles.tabText, selectedTab === 'profile' ? styles.activeTabText : undefined]}
+          >
+            Meus dados
+          </Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
