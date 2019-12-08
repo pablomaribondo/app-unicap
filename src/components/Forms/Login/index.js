@@ -34,12 +34,8 @@ function LoginForm({ onLoginSuccess }) {
   const [pass, setPass] = useState('110211');
   const onClick = () => {
     authenticateUserRequest({ matricula, pass })
-      .then(() => {
-        onLoginSuccess({
-          registration: matricula.slice(0, -2),
-          token: pass,
-          digit: matricula.slice(-1),
-        });
+      .then(response => {
+        onLoginSuccess({ ...response.data.values.userInfo, pass });
       })
       .catch(error => {
         if (error.response && error.response.status === 400) {

@@ -42,12 +42,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function HomeHeader() {
+// eslint-disable-next-line react/prop-types
+export default function HomeHeader({ name, registration, onTabChange }) {
   return (
     <View style={styles.header}>
       <View style={styles.headerContentWrapper}>
-        <Text style={[styles.text]}>José Arthur Silveira</Text>
-        <Text style={[styles.text, { fontSize: 12 }]}>201710712-9</Text>
+        <Text style={[styles.text, { textTransform: 'capitalize' }]}>{name}</Text>
+        <Text style={[styles.text, { fontSize: 12 }]}>{registration}</Text>
       </View>
       <ScrollView horizontal style={styles.tabsWrapper}>
         <View style={[styles.tab, styles.activeTab]}>
