@@ -41,19 +41,14 @@ export async function getCoursingRequest(payload) {
 }
 
 export async function getCoveredRequest(payload) {
-  try {
-    const { registration, token, digit } = payload;
-    return await axios.get(`${BASE_URL}subjects/covered`, {
-      headers: {
-        registration,
-        digit,
-        token,
-      },
-    });
-  } catch (error) {
-    console.error('Erro: ', error);
-    return null;
-  }
+  const { registration, pass } = payload;
+  return axios.get(`${BASE_URL}subjects/covered`, {
+    headers: {
+      registration: registration.slice(0, -2),
+      digit: registration.slice(-1),
+      token: pass,
+    },
+  });
 }
 
 export async function getGradesRequest(payload) {
@@ -73,19 +68,14 @@ export async function getGradesRequest(payload) {
 }
 
 export async function getPendingRequest(payload) {
-  try {
-    const { registration, token, digit } = payload;
-    return await axios.get(`${BASE_URL}subjects/pending`, {
-      headers: {
-        registration,
-        digit,
-        token,
-      },
-    });
-  } catch (error) {
-    console.error('Erro: ', error);
-    return null;
-  }
+  const { registration, pass } = payload;
+  return axios.get(`${BASE_URL}subjects/pending`, {
+    headers: {
+      registration: registration.slice(0, -2),
+      digit: registration.slice(-1),
+      token: pass,
+    },
+  });
 }
 
 export async function getScheduleRequest(payload) {

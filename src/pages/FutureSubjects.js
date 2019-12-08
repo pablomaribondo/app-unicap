@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { getCoursingRequest } from '../Requests';
+import { getPendingRequest } from '../Requests';
 import Subject from '../components/Subject';
 
 const styles = StyleSheet.create({
@@ -9,29 +9,26 @@ const styles = StyleSheet.create({
   },
 });
 
-const CurrentSubjects = ({ registration, pass }) => {
+const FutureSubjects = ({ registration, pass }) => {
   const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
-    getCoursingRequest({ registration, pass })
+    getPendingRequest({ registration, pass })
       .then(response => {
-        console.log(response.data);
-        setSubjects(response.data.values.coursingSubjects);
+        setSubjects(response.data.values.pendingSubjects);
       })
-      .catch(error => {
-        console.log(error);
+      .catch(() => {
+        alert('Tivemos um problema ao tentar carregar suas disciplinas!');
       });
   }, []);
-
-  console.log(subjects);
 
   return (
     <View style={styles.rootContainer}>
       {subjects.map(eachSubject => {
-        return <Subject subject={eachSubject} isPrevious={false} isFuture={false}/>;
+        return <Subject subject={eachSubject} isPrevious={false} isFuture />;
       })}
     </View>
   );
 };
 
-export default CurrentSubjects;
+export default FutureSubjects;

@@ -91,16 +91,6 @@ export default function HomeHeader({ name, registration, onTabChange, selectedTa
             Faltando
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => onTabChange('profile')}
-          style={[styles.tab, selectedTab === 'profile' ? styles.activeTab : undefined]}
-        >
-          <Text
-            style={[styles.tabText, selectedTab === 'profile' ? styles.activeTabText : undefined]}
-          >
-            Meus dados
-          </Text>
-        </TouchableOpacity>
       </ScrollView>
     </View>
   );

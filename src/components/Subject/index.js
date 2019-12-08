@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
-import { View, StyleSheet, Text} from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { PRIMARY, PRIMARY_DARK, SECONDARY_DARKER } from '../../utils/colors';
 import formatDate from '../../utils/formatDate';
 
@@ -60,51 +60,80 @@ const styles = StyleSheet.create({
   },
 });
 
-function Subject({ subject }) {
+function Subject({ subject, isPrevious, isFuture }) {
   if (subject) {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>{subject.code}</Text>
         <Text style={[styles.text, { fontSize: 22 }]}>{subject.name}</Text>
-        <View style={styles.subjectLocation}>
-          <View style={styles.room}>
-            <Text style={styles.roomText}>{subject.room}</Text>
+        {isPrevious === true && isFuture === false && (
+          <View style={styles.subjectLocation}>
+            {subject.period !== '1' && (
+              <View style={styles.room}>
+                <Text style={styles.roomText}>{subject.period}</Text>
+              </View>
+            )}
+            <View style={styles.room}>
+              <Text style={styles.roomText}>{subject.situation}</Text>
+            </View>
+            {subject.period !== '1' && (
+              <View style={styles.room}>
+                <Text style={styles.roomText}>{subject.averageGrade}</Text>
+              </View>
+            )}
           </View>
-          <Text style={[styles.text]}>{subject.schedule}</Text>
-        </View>
-        <View style={styles.subjectTests}>
-          <View style={styles.subjectTest}>
-            <Text style={styles.testDescription}>1º GQ</Text>
-            <Text style={styles.grade}>{subject.grades.firstGrade}</Text>
-            <Text style={styles.testDescription}>
-              {formatDate(
-                subject.examSchedule.firstGrade.firstExame,
-                subject.examSchedule.firstGrade.secondExame
+        )}
+        {isPrevious === false && isFuture === false && (
+          <>
+            <View style={styles.subjectLocation}>
+              {subject.grades.finalSituation !== '' && (
+                <View style={styles.room}>
+                  <Text style={styles.roomText}>{subject.grades.finalSituation}</Text>
+                </View>
               )}
-            </Text>
-          </View>
-          <View style={styles.subjectTest}>
-            <Text style={styles.testDescription}>2º GQ</Text>
-            <Text style={styles.grade}>{subject.grades.secondGrade}</Text>
-            <Text style={styles.testDescription}>
-              {formatDate(
-                subject.examSchedule.secondGrade.firstExame,
-                subject.examSchedule.secondGrade.secondExame
-              )}
-            </Text>
-          </View>
-          <View style={styles.subjectTest}>
-            <Text style={styles.testDescription}>Prova final</Text>
-            <Text style={styles.grade}>{subject.grades.finalGrade}</Text>
-            <Text style={styles.testDescription}>
-              {formatDate(subject.examSchedule.finalGrade)}
-            </Text>
-          </View>
-          <View style={[styles.subjectTest, { marginRight: 0 }]}>
-            <Text style={styles.testDescription}>Média final</Text>
-            <Text style={styles.grade}>6.00</Text>
-          </View>
-        </View>
+
+              <View style={styles.room}>
+                <Text style={styles.roomText}>{subject.room}</Text>
+              </View>
+              <Text style={[styles.text]}>{subject.schedule}</Text>
+            </View>
+            <View style={styles.subjectTests}>
+              <View style={styles.subjectTest}>
+                <Text style={styles.testDescription}>1º GQ</Text>
+                <Text style={styles.grade}>{subject.grades.firstGrade}</Text>
+                <Text style={styles.testDescription}>
+                  {formatDate(
+                    subject.examSchedule.firstGrade.firstExame,
+                    subject.examSchedule.firstGrade.secondExame
+                  )}
+                </Text>
+              </View>
+              <View style={styles.subjectTest}>
+                <Text style={styles.testDescription}>2º GQ</Text>
+                <Text style={styles.grade}>{subject.grades.secondGrade}</Text>
+                <Text style={styles.testDescription}>
+                  {formatDate(
+                    subject.examSchedule.secondGrade.firstExame,
+                    subject.examSchedule.secondGrade.secondExame
+                  )}
+                </Text>
+              </View>
+              <View style={styles.subjectTest}>
+                <Text style={styles.testDescription}>Prova final</Text>
+                <Text style={styles.grade}>{subject.grades.finalGrade}</Text>
+                <Text style={styles.testDescription}>
+                  {formatDate(subject.examSchedule.finalGrade)}
+                </Text>
+              </View>
+              <View style={[styles.subjectTest, { marginRight: 0 }]}>
+                <Text style={styles.testDescription}>Média final</Text>
+                <Text style={styles.grade}>
+                  {subject.grades.finalAverageGrade}
+                </Text>
+              </View>
+            </View>
+          </>
+        )}
       </View>
     );
   }
