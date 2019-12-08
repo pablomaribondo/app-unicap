@@ -1,198 +1,115 @@
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
-const BASE_URL = 'http://0.0.0.0:3000/api/v1/grad-student/';
+import axios from 'axios';
 
-export default function authenticateUserRequest(payload) {
-  const { matricula, pass } = payload;
-  const registration = matricula.slice(0, -1);
-  const digit = matricula.slice(-1);
-  const token = pass;
-  const body = {
-    registration,
-    digit,
-    token,
-  };
-  const hdrs = {
-    method: 'POST',
-    body: JSON.stringify(body),
-    headers: new Headers({
-      'content-type': 'application/json',
-      Accept: 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    }),
-  };
-  return Promise.all([
-    fetch(`${BASE_URL}login`, hdrs)
-      .then(res => console.log(res) || res.json())
-      .catch(() => []),
-  ])
-    .then(([data]) => {
-      return { data, registration, digit, token };
-    })
-    .catch(err => {
-      console.error('Erro: ', err);
-      return null;
+const BASE_URL = 'http://38e129d7.ngrok.io/api/v1/grad-student/';
+
+export default async function authenticateUserRequest(payload) {
+  try {
+    const { matricula, pass } = payload;
+    return await axios.post(`${BASE_URL}login`, {
+      registration: matricula.slice(0, -1),
+      digit: matricula.slice(-1),
+      token: pass,
     });
+  } catch (error) {
+    console.error('Erro: ', error);
+    return null;
+  }
 }
 
-export function getGradRequest(payload) {
-  const { registration, token, digit } = payload;
-  const hdrs = {
-    method: 'GET',
-    headers: new Headers({
-      'content-type': 'application/json',
-      Accept: 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      registration,
-      digit,
-      token,
-    }),
-  };
-  return Promise.all([
-    fetch(`${BASE_URL}`, hdrs)
-      .then(res => res.json())
-      .catch(() => []),
-  ])
-    .then(([data]) => ({
-      data,
-    }))
-    .catch(err => {
-      console.error('Erro: ', err);
-      return null;
+export async function getGradRequest(payload) {
+  try {
+    const { registration, token, digit } = payload;
+    return await axios.get(`${BASE_URL}`, {
+      headers: {
+        registration,
+        digit,
+        token,
+      },
     });
+  } catch (error) {
+    console.error('Erro: ', error);
+    return null;
+  }
 }
 
-export function getCoursingRequest(payload) {
-  const { registration, token, digit } = payload;
-  const hdrs = {
-    method: 'GET',
-    headers: new Headers({
-      'content-type': 'application/json',
-      Accept: 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      registration,
-      digit,
-      token,
-    }),
-  };
-  return Promise.all([
-    fetch(`${BASE_URL}subjects/coursing`, hdrs)
-      .then(res => res.json())
-      .catch(() => []),
-  ])
-    .then(([data]) => ({
-      data,
-    }))
-    .catch(err => {
-      console.error('Erro: ', err);
-      return null;
+export async function getCoursingRequest(payload) {
+  try {
+    const { registration, token, digit } = payload;
+    return await axios.get(`${BASE_URL}subjects/coursing`, {
+      headers: {
+        registration,
+        digit,
+        token,
+      },
     });
+  } catch (error) {
+    console.error('Erro: ', error);
+    return null;
+  }
 }
 
-export function getCoveredRequest(payload) {
-  const { registration, token, digit } = payload;
-  const hdrs = {
-    method: 'GET',
-    headers: new Headers({
-      'content-type': 'application/json',
-      Accept: 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      registration,
-      digit,
-      token,
-    }),
-  };
-  return Promise.all([
-    fetch(`${BASE_URL}subjects/covered`, hdrs)
-      .then(res => res.json())
-      .catch(() => []),
-  ])
-    .then(([data]) => ({
-      data,
-    }))
-    .catch(err => {
-      console.error('Erro: ', err);
-      return null;
+export async function getCoveredRequest(payload) {
+  try {
+    const { registration, token, digit } = payload;
+    return await axios.get(`${BASE_URL}subjects/covered`, {
+      headers: {
+        registration,
+        digit,
+        token,
+      },
     });
+  } catch (error) {
+    console.error('Erro: ', error);
+    return null;
+  }
 }
 
-export function getGradesRequest(payload) {
-  const { registration, token, digit } = payload;
-  const hdrs = {
-    method: 'GET',
-    headers: new Headers({
-      'content-type': 'application/json',
-      Accept: 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      registration,
-      digit,
-      token,
-    }),
-  };
-  return Promise.all([
-    fetch(`${BASE_URL}subjects/grades`, hdrs)
-      .then(res => res.json())
-      .catch(() => []),
-  ])
-    .then(([data]) => ({
-      data,
-    }))
-    .catch(err => {
-      console.error('Erro: ', err);
-      return null;
+export async function getGradesRequest(payload) {
+  try {
+    const { registration, token, digit } = payload;
+    return await axios.get(`${BASE_URL}subjects/grades`, {
+      headers: {
+        registration,
+        digit,
+        token,
+      },
     });
+  } catch (error) {
+    console.error('Erro: ', error);
+    return null;
+  }
 }
 
-export function getPendingRequest(payload) {
-  const { registration, token, digit } = payload;
-  const hdrs = {
-    method: 'GET',
-    headers: new Headers({
-      'content-type': 'application/json',
-      Accept: 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      registration,
-      digit,
-      token,
-    }),
-  };
-  return Promise.all([
-    fetch(`${BASE_URL}subjects/pending`, hdrs)
-      .then(res => res.json())
-      .catch(() => []),
-  ])
-    .then(([data]) => ({
-      data,
-    }))
-    .catch(err => {
-      console.error('Erro: ', err);
-      return null;
+export async function getPendingRequest(payload) {
+  try {
+    const { registration, token, digit } = payload;
+    return await axios.get(`${BASE_URL}subjects/pending`, {
+      headers: {
+        registration,
+        digit,
+        token,
+      },
     });
+  } catch (error) {
+    console.error('Erro: ', error);
+    return null;
+  }
 }
 
-export function getScheduleRequest(payload) {
-  const { registration, token, digit } = payload;
-  const hdrs = {
-    method: 'GET',
-    headers: new Headers({
-      'content-type': 'application/json',
-      Accept: 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      registration,
-      digit,
-      token,
-    }),
-  };
-  return Promise.all([
-    fetch(`${BASE_URL}subjects/schedule`, hdrs)
-      .then(res => res.json())
-      .catch(() => []),
-  ])
-    .then(([data]) => ({
-      data,
-    }))
-    .catch(err => {
-      console.error('Erro: ', err);
-      return null;
+export async function getScheduleRequest(payload) {
+  try {
+    const { registration, token, digit } = payload;
+    return await axios.get(`${BASE_URL}subjects/schedule`, {
+      headers: {
+        registration,
+        digit,
+        token,
+      },
     });
+  } catch (error) {
+    console.error('Erro: ', error);
+    return null;
+  }
 }
