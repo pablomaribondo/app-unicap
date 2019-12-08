@@ -39,7 +39,7 @@ function LoginForm() {
         value={matricula}
         type="custom"
         options={{
-          mask: '999999999-9',
+          mask: '9999999999',
         }}
         keyboardType="numeric"
         onChangeText={e => setMatricula(e)}

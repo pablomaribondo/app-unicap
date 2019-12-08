@@ -1,23 +1,21 @@
 import React from 'react';
-import { KeyboardAvoidingView, StyleSheet } from 'react-native';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { StyleSheet, KeyboardAvoidingView, View } from 'react-native';
 import { loadAsync } from 'expo-font';
-import { PRIMARY } from './src/utils/colors';
-import HomeHeader from './src/components/HomeHeader';
-import reducer from './src/reducer';
-import DaySelector from "./src/components/DaySelector";
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { SECONDARY } from './src/utils/colors';
+import LoginForm from './src/components/Forms/Login';
+import AppRoot from './src/pages/AppRoot';
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    backgroundColor: PRIMARY,
+    backgroundColor: SECONDARY,
     justifyContent: 'center',
-    textAlign: 'center',
   },
 });
 
-export default function() {
+const Login = () => {
   const { useEffect, useState } = React;
   const [fontLoaded, setFontLoaded] = useState(false);
 
@@ -28,18 +26,46 @@ export default function() {
     setFontLoaded(true);
   };
 
+  const proceedToApp = userDetails => {
+    alert('a');
+  };
+
+  alert('aajjaa');
+
+
+
+
+
   useEffect(() => {
     loadFont();
   });
 
   return (
-    <Provider store={createStore(reducer)}>
+    <View style={styles.root}>
       {fontLoaded && (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-          <HomeHeader />
-          <DaySelector/>
+          <LoginForm onLoginSuccess={proceedToApp} />
         </KeyboardAvoidingView>
       )}
-    </Provider>
+    </View>
   );
-}
+};
+
+const AppNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: Login,
+    },
+    AppRoot: {
+      screen: AppRoot,
+    },
+  },
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    },
+  }
+);
+
+export default createAppContainer(AppNavigator);
