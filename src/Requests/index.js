@@ -30,19 +30,14 @@ export async function getGradRequest(payload) {
 }
 
 export async function getCoursingRequest(payload) {
-  try {
-    const { registration, token, digit } = payload;
-    return await axios.get(`${BASE_URL}subjects/coursing`, {
-      headers: {
-        registration,
-        digit,
-        token,
-      },
-    });
-  } catch (error) {
-    console.error('Erro: ', error);
-    return null;
-  }
+  const { registration, pass } = payload;
+  return axios.get(`${BASE_URL}subjects/coursing`, {
+    headers: {
+      registration: registration.slice(0, -2),
+      digit: registration.slice(-1),
+      token: pass,
+    },
+  });
 }
 
 export async function getCoveredRequest(payload) {
