@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Constants from 'expo-constants';
 import { WHITE, PRIMARY, PRIMARY_DARK } from '../../utils/colors';
 import { elevationShadowStyle } from '../../utils/shadows';

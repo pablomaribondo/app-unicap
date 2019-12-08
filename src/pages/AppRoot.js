@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { useNavigationParam } from 'react-navigation-hooks';
 import { SECONDARY } from '../utils/colors';
 import HomeHeader from '../components/HomeHeader';
+import Subject from "../components/Subject";
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -26,6 +27,9 @@ const AppRoot = () => {
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}
       />
+      <Subject />
+      <Subject />
+      <Subject />
     </View>
   );
 };

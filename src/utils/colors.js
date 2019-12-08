@@ -1,3 +1,4 @@
+export const SECONDARY_DARKER = '#151b23';
 export const SECONDARY = '#2c3e50';
 export const PRIMARY = '#2ecc71';
 export const PRIMARY_DARK = '#1E874B';
