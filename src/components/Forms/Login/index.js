@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
 });
 
 function LoginForm({ onLoginSuccess }) {
-  const [matricula, setMatricula] = useState('201727050-2');
-  const [pass, setPass] = useState('110211');
+  const [matricula, setMatricula] = useState('');
+  const [pass, setPass] = useState('');
   const onClick = () => {
     authenticateUserRequest({ matricula, pass })
       .then(response => {
@@ -65,7 +65,7 @@ function LoginForm({ onLoginSuccess }) {
       <TextInput
         placeholder="Senha"
         value={pass}
-        onChange={e => setPass(e.value)}
+        onChangeText={e => setPass(e)}
         multiline={false}
         style={styles.field}
         keyboardType="numeric"

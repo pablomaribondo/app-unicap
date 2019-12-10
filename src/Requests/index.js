@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import axios from 'axios';
 
-const BASE_URL = 'http://ee3f5348.ngrok.io/api/v1/grad-student/';
+const BASE_URL = 'https://pavao.herokuapp.com/api/v1/grad-student/';
 
 export async function authenticateUserRequest(payload) {
   const { matricula, pass } = payload;
